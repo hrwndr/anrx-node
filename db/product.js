@@ -55,6 +55,7 @@ const getAllProducts = () => {
         const sql = "SELECT * FROM `Products`";
         con.query(sql, function (err, result) {
             if (err) reject(err);
+            resolve(result)
         });
     })
 }
