@@ -17,7 +17,7 @@ const createProduct = (name, sku, price) => {
 
 const getProduct = (id) => {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT * FROM `Products` WHERE id=" + id;
+        const sql = "select Products.*,product_images.image_url from `Products` left join `product_images` on Products.id = product_images.product_id AND Products.id=" + id;
 
         con.query(sql, function (err, result) {
             if (err) reject(err);
@@ -52,7 +52,7 @@ const updateProduct = (id, data = {}) => {
 
 const getAllProducts = () => {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT * FROM `Products`";
+        const sql = "select Products.*,product_images.image_url from `Products` left join `product_images` on Products.id = product_images.product_id";
         con.query(sql, function (err, result) {
             if (err) reject(err);
             resolve(result)

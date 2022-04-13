@@ -29,7 +29,7 @@ const createSubCategory = (name, parent_category_id, description, image_url) => 
 
 const getParentCatById = (id) => {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT * FROM `Category` WHERE id='" + id + "'";
+        const sql = "select Category.*,Categories.name as subcategory from `Category` left join `Categories` on Category.id = Categories.parent_category_id AND Category.id=" + id;
 
         con.query(sql, function (err, result) {
             if (err) reject(err);
